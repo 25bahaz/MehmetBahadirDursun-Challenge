@@ -83,7 +83,6 @@ public fun list_hero(nft: Hero, price: u64, ctx: &mut TxContext) {
 
 #[allow(lint(self_transfer))]
 public fun buy_hero(list_hero: ListHero, coin: Coin<SUI>, ctx: &mut TxContext) {
-
     // TODO: Destructure list_hero to get id, nft, price, and seller
         // Hints:
         // let ListHero { id, nft, price, seller } = list_hero;
@@ -114,13 +113,17 @@ public fun buy_hero(list_hero: ListHero, coin: Coin<SUI>, ctx: &mut TxContext) {
 // ========= ADMIN FUNCTIONS =========
 
 public fun delist(_: &AdminCap, list_hero: ListHero) {
-
     // NOTE: The AdminCap parameter ensures only admin can call this
     // TODO: Implement admin delist functionality
         // Hints:
         // Destructure list_hero (ignore price with "price: _")
+    let ListHero { id,  nft, price: _, seller} = list_hero;
+    
     // TODO:Transfer NFT back to original seller
+    transfer::public_transfer(nft, seller);
+
     // TODO:Delete the listing ID (object::delete(id))
+    object::delete(id);
 }
 
 public fun change_the_price(_: &AdminCap, list_hero: &mut ListHero, new_price: u64) {
