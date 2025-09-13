@@ -127,12 +127,12 @@ public fun delist(_: &AdminCap, list_hero: ListHero) {
 }
 
 public fun change_the_price(_: &AdminCap, list_hero: &mut ListHero, new_price: u64) {
-    
     // NOTE: The AdminCap parameter ensures only admin can call this
     // list_hero has &mut so price can be modified     
     // TODO: Update the listing price
         // Hints:
         // Access the price field of list_hero and update it
+    list_hero.price = new_price;
 }
 
 // ========= GETTER FUNCTIONS =========
