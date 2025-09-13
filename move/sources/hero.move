@@ -36,13 +36,13 @@ public fun create_hero(name: String, image_url: String, power: u64, ctx: &mut Tx
     // TODO: Create HeroMetadata and freeze it for tracking
         // Hints:
         // Use ctx.epoch_timestamp_ms() for timestamp    
-    let heroMetada = HeroMetadata {
+    let hero_metada = HeroMetadata {
         id: object::new(ctx),
         timestamp: ctx.epoch_timestamp_ms(),
     };
     
     //TODO: Use transfer::freeze_object() to make metadata immutable
-    transfer::freeze_object(heroMetada);
+    transfer::freeze_object(hero_metada);
 }
 
 // ========= GETTER FUNCTIONS =========
